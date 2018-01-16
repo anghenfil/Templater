@@ -43,4 +43,8 @@ class TemplateParser{
             return true;
         }
     }
+
+    public static function push($key1, $val1){
+        self::$array[$key1] .= $val1;
+    }
 }
