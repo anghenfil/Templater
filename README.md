@@ -7,4 +7,6 @@ TemplateParser::set_variable("NAME", "VALUE");
 ```
 
 ## ToDo:
-- Seperate Template Parser from Variable manager
+- Seperate Template Parser from "variables manager"
+- Create VariableStorage class
+- Allow custom VariableStorages
