@@ -2,12 +2,26 @@
 Simplest Template Engine
 
 ## How it works:
+
+### PHP-Code:
 ```
-TemplateParser::set_variable("NAME", "VALUE");
+$storage = new VariableStore();
+$storage->set_variable("test1", "Success.");
+
+try {
+   $parser = new TemplateParser("tests/testfile.php", $storage);
+} catch (\anghenfil\Templater\InvalidVariableStoreException $e) {
+   //Exception handling here
+}
+
+print($parser->parse());
 ```
 
-## ToDo:
-- Seperate Template Parser from "variables manager"
-- Create VariableStorage class
-- Allow custom VariableStorages
-- Custom variable identifier
+To change the variable identifier (Default is {key})use for example```
+$parser->setVarChar("{[", "]}");```
+
+### Example HTML Template:
+#### Default:
+```{test1}```
+#### With modified variable identifier: 
+```{[test1]}```
