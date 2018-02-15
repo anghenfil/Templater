@@ -1,16 +1,22 @@
 <?php
 
 use anghenfil\Templater\TemplateParser;
+use anghenfil\Templater\VariableStore;
 
 class NachoTest extends PHPUnit_Framework_TestCase {
 
   public function testAdding()
   {
-    TemplateParser::set_variable("test1", "test");
-    TemplateParser::push("test1", "append");
+    $storage = new VariableStore();
+    $storage->set_variable("test1", "Success.");
 
-    $parser = new TemplateParser("tests/testfile.php");
-    $parser->parse();
+      try {
+          $parser = new TemplateParser("tests/testfile.php", $storage);
+      } catch (\anghenfil\Templater\InvalidVariableStoreException $e) {
+          //Exception handling here
+      }
+      $parser->setVarChar("{[", "]}");
+    print($parser->parse());
   }
 
 }
