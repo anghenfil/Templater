@@ -8,16 +8,24 @@ class TemplateParser{
 	private $varchar_open = "{";
 	private $varchar_close = "}";
 	private $store;
+	public static $globalstore;
+
+	public static function init(){
+	    self::$globalstore = new VariableStore();
+    }
 
 	function __construct($filename, $store){
-	    if(is_null($store)){
-	        throw new InvalidVariableStoreException(InvalidVariableStoreException::NO_STORE);
-        }
-	    if( ! $store instanceof VariableStore){
-            throw new InvalidVariableStoreException(InvalidVariableStoreException::WRONG_TYPE);
+	    if(!is_null($store)){
+            $this->store = $store;
+            if( ! $store instanceof VariableStore){
+                throw new InvalidVariableStoreException(InvalidVariableStoreException::WRONG_TYPE);
+            }
+        }else{
+	        if(is_null(self::$globalstore)){
+	            throw new InvalidVariableStoreException(InvalidVariableStoreException::GSTORE_NO_INIT);
+            }
         }
 		$this->filename = $filename;
-		$this->store = $store;
 	}
 
 	private function loadFile(){
@@ -27,10 +35,16 @@ class TemplateParser{
     public function parse(){
         $this->loadFile();
 
-        foreach($this->store->getStore() as $key => $value){
-            $this->html = str_replace($this->varchar_open.$key.$this->varchar_close, $this->store->getStore()[$key],$this->html);
+        if(!is_null($this->store)) {
+            foreach ($this->store->getStore() as $key => $value) {
+                $this->html = str_replace($this->varchar_open . $key . $this->varchar_close, $this->store->getStore()[$key], $this->html);
+            }
+        }else{
+            foreach (self::$globalstore->getStore() as $key => $value) {
+                $this->html = str_replace($this->varchar_open . $key . $this->varchar_close, self::$globalstore->getStore()[$key], $this->html);
+            }
         }
-        
+
         return($this->html);
     }
 
