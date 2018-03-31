@@ -3,7 +3,7 @@
 use anghenfil\Templater\TemplateParser;
 use anghenfil\Templater\VariableStore;
 
-class NachoTest extends PHPUnit_Framework_TestCase {
+class TemplaterTest extends PHPUnit_Framework_TestCase {
 
   public function testAdding()
   {
