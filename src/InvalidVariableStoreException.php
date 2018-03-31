@@ -13,14 +13,14 @@ use Exception;
 
 class InvalidVariableStoreException extends Exception{
     const WRONG_TYPE = 10;
-    const NO_STORE = 20;
+    const GSTORE_NO_INIT = 30;
 
     public function __construct($code){
         $message = "";
         if($code == InvalidVariableStoreException::WRONG_TYPE){
             $message = "Variable Storage has wrong type. Must be class VariableStore";
-        }else if($code == InvalidVariableStoreException::NO_STORE){
-            $message = "No Variable Storage supplied.";
+        }else if($code == InvalidVariableStoreException::GSTORE_NO_INIT){
+            $message = "The global storage wasn't initiated with TemplaterParser::init().";
         }
         parent::__construct($message, $code, null);
     }
