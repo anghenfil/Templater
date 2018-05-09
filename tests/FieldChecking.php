@@ -3,10 +3,11 @@
 use anghenfil\Templater\TemplateParser;
 use anghenfil\Templater\VariableStore;
 
-class TemplaterTest extends PHPUnit_Framework_TestCase {
+class FieldChecking extends PHPUnit_Framework_TestCase {
 
   public function testAdding(){
-    $storage = new VariableStore();
+      print("Test FieldChecking runing.");
+    $storage = new VariableStore(array("test1", "test2"));
     $storage->set_variable("test1", "Success.");
 
       try {

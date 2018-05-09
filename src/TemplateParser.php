@@ -44,7 +44,6 @@ class TemplateParser{
                 $this->html = str_replace($this->varchar_open . $key . $this->varchar_close, self::$globalstore->getStore()[$key], $this->html);
             }
         }
-
         return($this->html);
     }
 
