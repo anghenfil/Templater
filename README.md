@@ -4,7 +4,7 @@ Simplest Template Engine
 ## How it works:
 You can either use the *Global Storage* or custom Variable Storages. You can specify fields to a VariableStore and specify, if only these fields are "allowed" and replaced or if these fields should set to empty string if they exist.
 
-###Constructors:
+### Constructors:
 VariableStore($keys, $onlykeys, $setempty);
 VariableStore();
 ### Beispiele:
@@ -52,3 +52,12 @@ $parser->setVarChar("{[", "]}");```
 {[test1]}
 {[test2]}
 ```
+
+### ToDo:
+I want to implement the following features as fast as possible:
+- Possability to escape and autoescape variable identifier
+
+The following features are imaginable and may coming later: 
+- simple looping
+- easy include of external files
+- if/else support
